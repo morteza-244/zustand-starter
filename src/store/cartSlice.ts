@@ -65,6 +65,8 @@ export const createCartSlice: StateCreator<
     }),
   removeProduct: (productId) =>
     set((state) => {
-      state.products.filter((product) => product.id !== productId);
+      state.products = state.products.filter(
+        (product) => product.id !== productId
+      );
     }),
 });

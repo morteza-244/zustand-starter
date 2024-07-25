@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
+import ProductLists from "@/components/products/ProductLists";
 
 const App = () => {
   return (
-    <div>
-      <Button>Add</Button>
-    </div>
+    <main className="h-screen container bg-slate-100">
+      <ProductLists />
+    </main>
   );
 };
 

@@ -18,6 +18,7 @@ const ShoppingPopover = () => {
       totalPrice: s.totalPrice,
     }))
   );
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -27,7 +28,7 @@ const ShoppingPopover = () => {
       </PopoverTrigger>
       <PopoverContent
         align="start"
-        className="overflow-y-scroll space-y-2 w-96"
+        className="overflow-y-auto h-96 space-y-2 w-96"
       >
         <div className="flex gap-2 justify-between w-full text-lg items-center">
           <h2 className="font-medium">Cart: </h2>

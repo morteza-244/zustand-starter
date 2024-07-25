@@ -1,5 +1,6 @@
 import { useMainStore } from "@/store/mainStore";
 import { MinusIcon, PlusIcon } from "lucide-react";
+import { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Button } from "../ui/button";
 
@@ -8,14 +9,29 @@ interface QtyButtonsProps {
 }
 
 const QtyButtons = ({ productId }: QtyButtonsProps) => {
-  const { decQty, getProductById, incQty } = useMainStore(
+  const { decQty, getProductById, incQty, setTotal } = useMainStore(
     useShallow((s) => ({
       decQty: s.decQty,
       incQty: s.incQty,
       getProductById: s.getProductById,
+      setTotal: s.setTotal,
     }))
   );
   const product = getProductById(productId);
+  
+  useEffect(() => {
+    const unSub = useMainStore.subscribe(
+      (s) => s.products,
+      (products) => {
+        setTotal(
+          products.reduce((acc, item) => acc + item.price * item.qty, 0)
+        );
+      },
+      { fireImmediately: true }
+    );
+    return unSub;
+  }, [setTotal]);
+
   return (
     <>
       {product && (

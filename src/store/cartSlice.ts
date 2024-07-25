@@ -34,16 +34,16 @@ export const createCartSlice: StateCreator<
     set((state) => {
       state.products.push({ ...product, qty: 1 });
     }),
-  decQty: (productId) =>
+  incQty: (productId) =>
     set((state) => {
       const existingProduct = state.products.find(
         (product) => product.id === productId
       );
       if (existingProduct) {
-        existingProduct.qty + 1;
+        existingProduct.qty += 1;
       }
     }),
-  incQty: (productId) =>
+  decQty: (productId) =>
     set((state) => {
       const existingProductIndex = state.products.findIndex(
         (product) => product.id === productId
